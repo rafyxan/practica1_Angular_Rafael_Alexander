@@ -1,0 +1,23 @@
+<div class="container d-flex justify-content-center">
+  <div class="row justify-content-center">
+    <div class="col-md-4" *ngFor="let city of cities">
+      <div 
+        class="card m-2" 
+        style="width: 18rem;" 
+        (mouseover)="toggleAnimation($event, true)" 
+        (mouseout)="toggleAnimation($event, false)">
+        <img [src]="city.image" class="card-img-top" alt="{{ city.name }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ city.name }}</h5>
+          <p *ngIf="weatherData[city.name]">
+            <strong>Temperatura:</strong> {{ weatherData[city.name]?.temp || 'No disponible' }} °C<br>
+            <strong>Clima:</strong> {{ weatherData[city.name]?.description || 'No disponible' }}<br>
+            <strong>Humedad:</strong> {{ weatherData[city.name]?.humidity || 'No disponible' }}%
+          </p>
+          <p *ngIf="!weatherData[city.name]">Cargando clima...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ 
